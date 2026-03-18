@@ -5,14 +5,7 @@ import { SmartImage } from "../componentes/SmartImage";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const loginSchema = z.object({
-  email: z.string().min(3, "El usuario o email es obligatorio"),
-  password: z.string().min(6, "La contraseña debe tener mínimo 6 caracteres"),
-});
-
-type LoginForm = z.infer<typeof loginSchema>;
+import { LoginFormData, loginSchema } from "../schemas/loginschema";
 
 export default function LoginPage() {
 
@@ -25,11 +18,11 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginForm>({
+  } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginForm) => {
+  const onSubmit = async (data: LoginFormData) => {
 
     setError("");
 
@@ -37,7 +30,7 @@ export default function LoginPage() {
 
       console.log("Login:", data);
 
-      // Aquí luego conectas tu API
+      // Aquí conectarás la API después
       const success = true;
 
       if (success) {
@@ -49,6 +42,7 @@ export default function LoginPage() {
     } catch (err) {
       setError("Error al iniciar sesión");
     }
+
   };
 
   return (
@@ -72,6 +66,7 @@ export default function LoginPage() {
           <div className="text-center">
 
             <div className="flex items-center justify-center gap-2 mb-6">
+
               <div className="w-14 h-14 bg-[#21D196] rounded-full flex items-center justify-center text-white">
                 <span className="text-2xl">🐾</span>
               </div>
@@ -80,6 +75,7 @@ export default function LoginPage() {
                 <h1 className="font-bold text-2xl text-gray-900">VetCare</h1>
                 <p className="text-xs text-gray-600">Clínica Veterinaria</p>
               </div>
+
             </div>
 
             <h2 className="text-3xl text-gray-900 mb-2">
