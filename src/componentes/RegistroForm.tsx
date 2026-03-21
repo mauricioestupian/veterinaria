@@ -69,11 +69,16 @@ export default function RegistroForm({ onSuccess }: Props) {
       onSuccess();
 
     } catch (err: any) {
-      setError(err.message || "Error inesperado");
+      const message =
+    err?.message?.trim() ||
+    "No se pudo completar el registro.";
 
-      if (err.errors) {
-      setFieldErrors(err.errors);
-    }
+  if (err?.errors) {
+    setFieldErrors(err.errors);
+    setError(""); // 👈 evita duplicar mensajes
+  } else {
+    setError(message);
+  }
     }
 
   };
@@ -109,7 +114,7 @@ export default function RegistroForm({ onSuccess }: Props) {
           <p className="text-sm text-red-800">{error}</p>
         </div>
       )}
-
+  
       <div className="space-y-6">
 
         {/* Información Personal */}
@@ -156,6 +161,11 @@ export default function RegistroForm({ onSuccess }: Props) {
                 className="w-full px-4 py-3 border rounded-lg"
                 placeholder="Apellidos"
               />
+              {fieldErrors.apellido && (
+                <p className="text-sm text-red-500 mt-1">
+                {fieldErrors.apellido}
+                </p>
+                )}
             </div>
 
           </div>

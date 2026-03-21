@@ -21,24 +21,39 @@ export const registroUsuario = async (data: RegisterData) => {
     password: data.password,
     roles: data.roles,
   };
-  console.log("JSON de registro:", requestBody);
+  try {
+    const response = await fetch(API_URL + "/registrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+    
+    let responseJson;
 
-  const response = await fetch(API_URL + "/registrar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
-  });
+    try {
 
-  const responseJson = await response.json();
+      responseJson = await response.json();
+    } catch {
+      throw {
+        messaje: "Respuesta invalida del servidor",
+        errors: null,
+      };
+    }
+    if (!response.ok) {
+      throw {
+        messaje:
+        responseJson.message || "Error al registrar el usuario",
+        errors: responseJson.errors || null,
+      };
+    }
 
-  if (!response.ok) {
-    throw {
-      message: responseJson.error || responseJson.errors || "Error al registrar el usuario" ,
-      errors: responseJson.errors || responseJson.errores || null,
-    };
-  }
-
-  return responseJson;
+    return responseJson;
+  } catch (error: any) {
+      throw {
+        message: "Error de coneccion con Servidor",
+        errors: "",
+      };
+    }
 };
