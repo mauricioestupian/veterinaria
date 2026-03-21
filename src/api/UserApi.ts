@@ -52,7 +52,7 @@ export const registroUsuario = async (data: RegisterData) => {
     return responseJson;
   } catch (error: any) {
       throw {
-        message: "Error de coneccion con Servidor",
+        message: "Error de conexion con Servidor",
         errors: "",
       };
     }
