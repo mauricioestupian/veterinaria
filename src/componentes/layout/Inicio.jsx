@@ -1,4 +1,4 @@
-import { SmartImage } from "./SmartImage";
+import { SmartImage } from "../iu/SmartImage";
 
 export default function Inicio() {
   return (

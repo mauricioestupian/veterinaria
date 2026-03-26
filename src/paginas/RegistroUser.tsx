@@ -2,7 +2,7 @@ import { CheckCircle, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-import RegistroForm from "../componentes/RegistroForm";
+import RegistroForm from "../componentes/iu/RegistroForm";
 
 export default function RegistroUser() {
 

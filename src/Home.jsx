@@ -1,9 +1,9 @@
-import Contacto from "./componentes/Contacto";
-import Equipo from "./componentes/Equipo";
-import { Footer } from "./componentes/Footer";
-import Header from "./componentes/Header";
-import Inicio from "./componentes/Inicio";
-import Servicios from "./componentes/Servicios";
+import Contacto from "./componentes/iu/Contacto";
+import Equipo from "./componentes/iu/Equipo";
+import Servicios from "./componentes/iu/Servicios";
+import { Footer } from "./componentes/layout/Footer";
+import Header from "./componentes/layout/Header";
+import Inicio from "./componentes/layout/Inicio";
 
 export default function Home() {
   return (
