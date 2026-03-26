@@ -7,7 +7,9 @@ export function Servicios({
   setEditingService,
 }) {
   const eliminarServicio = (id) => {
-    setServicios(servicios.filter((s) => s.id !== id));
+    if (confirm("¿Estás seguro de eliminar este servicio?")) {
+      setServicios(servicios.filter((s) => s.id !== id));
+    }
   };
 
   return (

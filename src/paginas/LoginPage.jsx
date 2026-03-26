@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { SmartImage } from "../componentes/iu/SmartImage";
+import { ImageWithFallback } from "../componentes/iu/ImageWithFallback";
 import { useAuth } from "../context/AuthContext";
 import { loginSchema } from "../schemas/loginschema";
 import { loginUsuario } from "../services/authService";
@@ -93,13 +93,14 @@ export default function LoginPage() {
       {/* Botón cerrar */}
       <button
         onClick={() => navigate("/")}
-        className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100"
+        className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors"
+        aria-label="Cerrar"
       >
         <X className="w-6 h-6 text-gray-600" />
       </button>
 
       {/* Formulario */}
-      <div className="flex-1 flex items-center justify-center px-4 bg-white">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-white">
         <div className="w-full max-w-md space-y-8">
           {/* Header */}
           <div className="text-center">
@@ -243,11 +244,28 @@ export default function LoginPage() {
       </div>
 
       {/* Imagen */}
-      <div className="hidden lg:block lg:flex-1">
-        <SmartImage
-          src="https://images.unsplash.com/photo-1571063343491-7359c0d47aa1"
-          className="w-full h-full object-cover"
-        />
+      <div className="hidden lg:block lg:flex-1 relative bg-gradient-to-br from-emerald-50 to-green-50">
+        <div className="absolute inset-0 flex items-center justify-center p-12">
+          <div className="max-w-lg">
+            <div className="rounded-3xl overflow-hidden shadow-2xl mb-8">
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1571063343491-7359c0d47aa1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBjYXQlMjB0b2dldGhlcnxlbnwxfHx8fDE3NzEzNjEwNzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="Mascotas felices"
+                className="w-full h-96 object-cover"
+              />
+            </div>
+            <div className="text-center space-y-4">
+              <h3 className="text-3xl text-gray-900">
+                Cuidamos de tus{" "}
+                <span className="text-[#21D196]">Mejores Amigos</span>
+              </h3>
+              <p className="text-lg text-gray-600">
+                Accede al sistema de gestión de VetCare para administrar citas,
+                historiales médicos y más.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

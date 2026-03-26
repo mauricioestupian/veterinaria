@@ -7,7 +7,8 @@ export function Empleados({
   setEditingEmployee,
 }) {
   const eliminarEmpleado = (id) => {
-    setEmpleados(empleados.filter((e) => e.id !== id));
+    if (confirm("¿Estás seguro de eliminar este empleado?"))
+      setEmpleados(empleados.filter((e) => e.id !== id));
   };
 
   return (
