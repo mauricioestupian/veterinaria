@@ -26,7 +26,7 @@ export function Header({ user, onLogout }) {
             </button>
 
             <div className="text-right">
-              <p>{user?.name}</p>
+              <p>{user?.nombreCompleto}</p>
               <p className="text-sm text-gray-600">Administrador</p>
             </div>
 

@@ -88,3 +88,8 @@ export const registroUsuario = async (data) => {
     };
   }
 };
+
+  export const consultarPerfil = async (userId) => {
+    const response = await fetch(`${API_URL}/${userId}`);
+    return response.json();
+  };

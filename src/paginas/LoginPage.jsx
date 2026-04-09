@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ImageWithFallback } from "../componentes/iu/ImageWithFallback";
 import { useAuth } from "../context/AuthContext";
-import { loginSchema } from "../schemas/loginschema";
+import { loginSchema } from "../schemas/LoginSchema";
 import { loginUsuario } from "../services/authService";
 
 export default function LoginPage() {

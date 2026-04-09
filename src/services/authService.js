@@ -1,7 +1,8 @@
 const API_URL = "http://127.0.0.1:8080/auth/login";
 
 export async function loginUsuario(data) {
-  const res = await fetch(API_URL, {
+  try {
+    const res = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -14,6 +15,13 @@ export async function loginUsuario(data) {
   if (!res.ok) {
     throw new Error(json.mensaje || "Error en login");
   }
-
+    
+  
   return json;
+    
+  } catch {
+    throw new Error("Error de conexión con el servidor");   
+  }
+  
+
 }

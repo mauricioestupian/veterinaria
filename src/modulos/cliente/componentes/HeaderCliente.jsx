@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 export default function HeaderCliente({ user, onLogout }) {
   const navigate = useNavigate();
+  console.log("Usuario en HeaderCliente:", user);
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -30,7 +31,9 @@ export default function HeaderCliente({ user, onLogout }) {
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="font-medium text-gray-900">{user?.name}</p>
+              <p className="font-medium text-gray-900">
+                {user?.nombreCompleto}
+              </p>
               <p className="text-sm text-gray-600">{user?.email}</p>
             </div>
 

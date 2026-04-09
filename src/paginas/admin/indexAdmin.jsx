@@ -15,6 +15,7 @@ export default function AdminDashboard() {
     logout(); // cierra sesión
     navigate("/"); // redirige al inicio
   };
+  console.log("Usuario en AdminDashboard:", user);
 
   return (
     <div className="min-h-screen bg-gray-50">

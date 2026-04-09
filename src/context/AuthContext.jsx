@@ -44,6 +44,8 @@ export function AuthProvider({ children }) {
     const userData = {
       username: data.usuario,
       token: data.token,
+      nombreCompleto: data.nombreCompleto,
+      id: data.id,
       role: roleMap[roleRaw] || "cliente",
     };
 

@@ -1,9 +1,28 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useEffect, useState } from "react";
+import { consultarPerfil } from "../../../api/UserApi";
 
 export default function Perfil({ user }) {
+  const [perfilData, setPerfilData] = useState(null);
+
   // 🔥 luego vendrá de backend
   const userPets = [];
   const userAppointments = [];
+
+  useEffect(() => {
+    //cargar datos de perfil desde backend usando user.id
+    const perfildata = async () => {
+      // Aquí harías una llamada a tu API para obtener los datos del perfil
+      try {
+        const data = await consultarPerfil(user.id);
+        setPerfilData(data);
+        console.log("Datos de perfil cargados:", data);
+      } catch (error) {
+        console.error("Error al cargar datos de perfil:", error);
+      }
+    };
+    perfildata();
+  }, [user.id]);
 
   return (
     <div>
@@ -29,7 +48,7 @@ export default function Perfil({ user }) {
               <Mail className="w-5 h-5 text-gray-400" />
               <div>
                 <p className="text-sm text-gray-500">Email</p>
-                <p className="text-gray-900">{user?.email}</p>
+                <p className="text-gray-900">{perfilData?.email}</p>
               </div>
             </div>
 
@@ -37,7 +56,7 @@ export default function Perfil({ user }) {
               <Phone className="w-5 h-5 text-gray-400" />
               <div>
                 <p className="text-sm text-gray-500">Teléfono</p>
-                <p className="text-gray-900">+34 611 111 111</p>
+                <p className="text-gray-900">{perfilData?.telefono}</p>
               </div>
             </div>
 
@@ -45,7 +64,11 @@ export default function Perfil({ user }) {
               <MapPin className="w-5 h-5 text-gray-400" />
               <div>
                 <p className="text-sm text-gray-500">Dirección</p>
-                <p className="text-gray-900">Calle Principal 123, Madrid</p>
+                <p className="text-gray-900">
+                  {perfilData?.direccion?.calle},{" "}
+                  {perfilData?.direccion?.ciudad},{" "}
+                  {perfilData?.direccion?.pais}{" "}
+                </p>
               </div>
             </div>
           </div>
